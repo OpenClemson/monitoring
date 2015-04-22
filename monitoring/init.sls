@@ -34,7 +34,7 @@ flush-monitoring:
   cmd.run:
     - name: |
         docker-compose stop
-        docker compose rm --force
+        docker-compose rm --force
         docker-compose up -d
     - cwd: /var/containers/monitoring
     - watch:
