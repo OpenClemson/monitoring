@@ -20,6 +20,16 @@
     - group: root
     - mode: 644
 
+progrium/logspout:
+  docker.pulled:
+    - tag: latest
+    - force: True
+
+tptee/rsyslog-file:
+  docker.pulled:
+    - tag: latest
+    - force: True
+
 flush-monitoring:
   cmd.run:
     - name: |
@@ -27,3 +37,6 @@ flush-monitoring:
         docker compose rm --force
         docker-compose up -d
     - cwd: /var/containers/monitoring
+    - watch:
+        - docker: progrium/logspout
+        - docker: tptee/rsyslog-file
