@@ -1,0 +1,7 @@
+/var/log/containers/*log {
+    missingok
+    notifempty
+    sharedscripts
+    delaycompress
+    copytruncate
+}

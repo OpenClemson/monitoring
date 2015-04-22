@@ -1,0 +1,17 @@
+logspout:
+  image: progrium/logspout 
+  restart: always
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  command: syslog://rsyslog:514/udp
+  links:
+    - rsyslog
+  privileged: true
+rsyslog:
+  image: tptee/rsyslog-file
+  restart: always
+  privileged: true
+  ports:
+    - "514:514"
+  volumes:
+    - /var/log/containers:/var/log/containers
